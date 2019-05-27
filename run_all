@@ -1,0 +1,17 @@
+cp  -r $FOAM_TUTORIALS/basic/potentialFoam/cylinder/ .
+mv cylinder orig
+mv orig/0.orig orig/0
+
+python preprocessor.py
+
+for D in *; do
+	if [ -d "${D}" ]; then
+		if [ "${D}" != "orig" ]; then
+			blockMesh -case "${D}"
+			potentialFoam -case $PWD/"${D}"
+			postProcess -case $PWD/"${D}" -func 'components(U)' 
+			postProcess -case $PWD/"${D}" -func writeCellCentres
+			
+		fi
+	fi
+done
