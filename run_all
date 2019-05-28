@@ -15,3 +15,5 @@ for D in *; do
 		fi
 	fi
 done
+
+python3 postprocessor.py
