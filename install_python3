@@ -1,0 +1,3 @@
+pacman -Sy
+pacman -Ss pip
+pacman -S mingw64/mingw-w64-x86_64-python3-pip
