@@ -49,25 +49,19 @@ def get_v_in(file_name):
     
 subfolders = [f.path for f in os.scandir(dir) if (f.is_dir() and f.name != 'orig' and f.name.find('git') < 0) ]
 
-output_file = open(dir + "/output.csv",'w')
-output_writer = csv.writer(output_file)
-
-input_file = open(dir + "/input.csv",'w')
-input_writer = csv.writer(input_file)
+file = open(dir + "/data.csv",'w')
+writer = csv.writer(file)
 
 for sf in subfolders:
-    ux = parse_file(sf + '/0/Ux')
-    uy = parse_file(sf + '/0/Uy')
-    u = ux+uy
-    output_writer.writerow(u)
-    
-    cx = parse_file(sf + '/0/Cx')
-    cy = parse_file(sf + '/0/Cy')
-    cc = cx + cy   
+    Ux = parse_file(sf + '/0/Ux')
+    Uy = parse_file(sf + '/0/Uy')    
+    Cx = parse_file(sf + '/0/Cx')
+    Cy = parse_file(sf + '/0/Cy') 
     
     v_in = get_v_in(sf)
-    res = cc + [v_in]
-    input_writer.writerow(res)
 
-input_file.close()
-output_file.close()
+    for ux, uy, cx, cy in zip(Ux, Uy, Cx, Cy):
+        row = [ux, uy, cx, cy, v_in]
+        writer.writerow(row)
+
+file.close()
