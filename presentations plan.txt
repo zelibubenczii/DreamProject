@@ -1,0 +1,12 @@
+1) 2-3 slides about CFD
+
+2) 2-3 slides about the union of CFD and Machine learning:
+	- why do they need it
+	- how is that union organised
+
+3) 3-4 the problem we work with:
+	- desciption of the problemn (2d cylinder with laminar/turbulent flow)
+	- what data do we use (openFoam, paraView), how is  this data organised
+	- what's the plan (is to try with NN, CNN (deep learning), -> ...)
+
+ that's it for the introduction presentation

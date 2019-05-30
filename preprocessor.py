@@ -1,4 +1,4 @@
-import os, re
+import os, re, sys
 # from distutils.dir_util import copy_tree
 from shutil import copytree
 
@@ -24,14 +24,19 @@ def get_var_lines(dir_path):
     var_lines['U']['idx'] = line_idx
     var_lines['U']['value'] = value_0
 
-def create_cases(dir, delta={"U":[0.1, 0, 0]}, N=3):
+def create_cases(dir, *args):
     """
-    delta = {"U": [dU, dV, dW], ....}
+    U_0 = argv[1], delta_U = argv[2], N = argb[3]
     creates folders with new cases increasing iteratevly all variables (var_lines.keys()) in N steps
     """
+    #preparing input data for def:change_line_U
+    U_0 = [eval(args[0][1]), 0, 0]
+    delta_U = [eval(args[0][2]), 0, 0]
+    N = eval(args[0][3])
+ф    
     for i in range(N):
         line_0 = var_lines['U']['value']
-        line_new, u = change_line_U(line_0, delta['U'], i)
+        line_new, u = change_line_U(line_0, U_0, delta_U, i)
         dir_new = dir + '/V_in=' + str(u)
 #         os.makedirs(filepath_new)
         if not os.path.exists(dir_new):
@@ -43,15 +48,16 @@ def create_cases(dir, delta={"U":[0.1, 0, 0]}, N=3):
         replace_line_in_file(U_path, line_new, var_lines['U']['idx'])
 
 
-def change_line_U(line, delta_U, n):
+def change_line_U(line, U_0, delta_U, n):
     """
-    delta_U = (du, dv, dw)
+		U_0 = [u0, v0, w0]
+    delta_U = [du, dv, dw]
     input: line, sort of "uniformValue    constant (u v w);", where u, v, w - some numbers
     output: "uniformValue    constant (u+n*du v+n*dv w+n*dw);"
     """
     #this line finds and parses a part of the line to array, i.e. '(1, 0, 0)' => [1, 0, 0]
-    value_0 = [eval(x) for x in re.search('(\d |\d)+', line).group().split(" ")]
-    value_new = [x + n * y for x, y in zip(value_0, delta_U)]
+    # value_0 = [eval(x) for x in re.search('(\d |\d)+', line).group().split(" ")]
+    value_new = [x + n * y for x, y in zip(U_0, delta_U)]
     value_new_str = '('+ " ".join(str(x) for x in value_new) + ')'
     line_new = re.sub('\([\d ]+\)', value_new_str, line)
     return line_new, value_new[0]
@@ -73,4 +79,4 @@ def replace_line_in_file(file_path, new_line, id_line):
 
 dir = os.getcwd()
 get_var_lines(dir)
-create_cases(dir)
+create_cases(dir, sys.argv)
