@@ -33,7 +33,7 @@ def create_cases(dir, *args):
     U_0 = [eval(args[0][1]), 0, 0]
     delta_U = [eval(args[0][2]), 0, 0]
     N = eval(args[0][3])
-ф    
+   
     for i in range(N):
         line_0 = var_lines['U']['value']
         line_new, u = change_line_U(line_0, U_0, delta_U, i)
