@@ -61,7 +61,7 @@ for sf in subfolders:
     v_in = get_v_in(sf)
 
     for ux, uy, cx, cy in zip(Ux, Uy, Cx, Cy):
-        row = [ux, uy, cx, cy, v_in]
+        row = [ux/v_in, uy/v_in, cx, cy, v_in]
         writer.writerow(row)
 
 file.close()
