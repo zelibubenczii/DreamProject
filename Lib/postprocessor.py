@@ -50,7 +50,6 @@ def get_v_in(file_name):
 if __name__ == "__main__":
     dirs_to_discard = ['orig', '.git', 'nn_templ', "Lib"]
     subfolders = [f.path for f in os.scandir(dir) if (f.is_dir() and f.name not in dirs_to_discard and f.name.find('_NN') < 0) ]
-    print(subfolders)
     file = open(dir + "/data.csv",'w')
     writer = csv.writer(file)
 
