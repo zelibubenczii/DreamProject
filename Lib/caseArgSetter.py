@@ -14,8 +14,6 @@ def set_U_i(dir, x_i):
         reader = csv.reader(f)
         U_new = list(reader)[0]
     
-    print("DIR:", dir + '/0/U' + x_i)
-    print("U_x.size = ", len(U_new)) 
     _, start = read_data(dir + '/0/U' + x_i)
     
     U_file_path = dir + '/0/U' + x_i
@@ -23,4 +21,11 @@ def set_U_i(dir, x_i):
         if idx >= start and idx - start < len(U_new):
             line = U_new[idx-start]
         print(line.rstrip())
-set_U_i(case_path, 'x')
+
+def change_parameters(folder_list):
+    for f in folder_list:
+        for coord in ['x', 'y']:
+            set_U_i(f, coord)
+
+if __name__ == "__main__":
+    change_parameters(sys.argv)
