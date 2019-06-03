@@ -22,7 +22,9 @@ def set_U_i(dir, x_i):
             line = U_new[idx-start]
         print(line.rstrip())
 
-def change_parameters(folder_list):
+def change_parameters(argv):
+    folder_list = argv[1:]
+    print(folder_list)
     for f in folder_list:
         for coord in ['x', 'y']:
             set_U_i(f, coord)
