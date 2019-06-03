@@ -7,7 +7,7 @@ python Lib/preprocessor.py 1 0.2 2
 
 for D in *; do
 	if [ -d "${D}" ]; then
-        if [[ "${D}" == *"V_in"* ]]; then
+        if [[ "${D}" == *"V_in"* && "${D}" != *"_NN" ]]; then
 			blockMesh -case "${D}"
 			potentialFoam -case $PWD/"${D}"
 			postProcess -case $PWD/"${D}" -func 'components(U)' 
@@ -20,4 +20,4 @@ done
 python3 Lib/postprocessor.py
 
 #changes cases file in each folder ends with "_NN" according to csv file in the "_CSV" folder
-# Lib/VtkBuilder.bash
+Lib/VtkBuilder.bash
