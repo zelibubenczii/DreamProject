@@ -47,7 +47,7 @@ def get_v_in(file_name):
     start = file_name.find('V_in=') + len('V_in=')
     return eval(file_name[start:])
 
-if __name__ = "__main__":
+if __name__ == "__main__":
     dirs_to_discard = ['orig', '.git', 'nn_templ', "Lib"]
     subfolders = [f.path for f in os.scandir(dir) if (f.is_dir() and f.name not in dirs_to_discard)]
     file = open(dir + "/data.csv",'w')
