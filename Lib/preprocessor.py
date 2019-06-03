@@ -84,8 +84,7 @@ def create_nn_template(dir):
     else:
         print("WARNING! The directory {} already exists".format(dir_new))
     
-# dir = os.path.dirname(path)
-
-get_var_lines(dir)
-create_cases(dir, sys.argv)
-create_nn_template(dir)
+if __name__ = "__main__":
+    get_var_lines(dir)
+    create_cases(dir, sys.argv)
+    create_nn_template(dir)
