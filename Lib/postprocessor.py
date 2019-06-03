@@ -24,7 +24,6 @@ def parse_file(dir):
     read the data file of openFoam (like U or Ux ...)
     return np.array of data
     """
-    print("And at this: ", dir)
     f = open(dir)
     content = f.readlines()
 
@@ -50,9 +49,8 @@ def get_v_in(file_name):
     start = file_name.find('V_in=') + len('V_in=')
     return eval(file_name[start:])
 
-dirs_to_discard = ['orig', '.git', 'nn_templ']
+dirs_to_discard = ['orig', '.git', 'nn_templ', "Lib"]
 subfolders = [f.path for f in os.scandir(dir) if (f.is_dir() and f.name not in dirs_to_discard)]
-print(subfolders)
 file = open(dir + "/data.csv",'w')
 writer = csv.writer(file)
 
