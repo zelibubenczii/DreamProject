@@ -1,4 +1,4 @@
-protected_folders=(Lib Run)
+protected_folders=(Lib Help)
 
 for entry in *
 do
