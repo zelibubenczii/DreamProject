@@ -87,4 +87,3 @@ def create_nn_template(dir):
 if __name__ == "__main__":
     get_var_lines(dir)
     create_cases(dir, sys.argv)
-    create_nn_template(dir)
