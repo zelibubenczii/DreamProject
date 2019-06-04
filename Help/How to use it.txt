@@ -1,0 +1,17 @@
+How to use it:
+Basically, user deals with 3 sripts in the root folder:
+First, he is suggested to produce learning set
+
+    1) get_CFD_cases.bash - runnig it via Blue-CFD terminal, one gets folders with cases solved by openFoam, each case differs in parameters of input case files (e.g. V_in). User could set such parameters, their increment and total number of cases by modifying the corresponding line (at the time of writing this text - line 6) of the script. All output data is collected in "data.csv" folder by writing each set of outputs and inputs as one row
+
+It's assumed that after run neural network on some geometry, user has results written as separate CSV files (e.g. Ux.csv, Uy.csv). The 2nd script is developed as a visualisation tool (so far it produces *.jpg of contoures Ux and Uy):
+
+    2) check_NN_cases.bash - before running it via Blue-CFD terminal, user should fullfill some prearrangment with subfolders. The order of his action is supposed to be like:
+        2.1) to pick up a case folder with the same input parameters like he used for Neural Network, then copy this folder in the same root folder, adding "_NN" in the end (e.g. "V_in=1.0" must get name "V_in=1.0_NN")
+        2.2) to create subfolder "_CSV" in this new folder (like "/V_in=1.0_NN/_CSV")
+        2.3) to put his data from Neuron Network there, e.g.  files with the following paths must be arranged "/V_in=1.0_NN/_CSV/Ux.csv" and "/V_in=1.0_NN/_CSV/Ux.csv" for the folder "/V_in=1.0_NN/_CSV"
+        2.4) to run check_NN_cases.bash via Blue-CFD terminal
+        2.5) to find correspoing contour plots in each *_NN folder
+    
+Also, user can clean the root folder, leaving only *.bash scripts, the folders "Lib" and "Help", and also all subfolders which end with "_NN". For that
+    3) clean_all.bash - just run it with Blue-CFD terminal
