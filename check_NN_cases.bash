@@ -3,7 +3,7 @@ Lib/VtkBuilder.bash
 
 #get contours of velocity Ux.jpg and U_y.jpg in each folder which ends with *"_NN" (neural network case)
 for D in *; do
-    if [ -d "${D}" && [ "${D}" == *"_NN" ]]; then
+    if [ -d "${D}" ] && [[ "${D}" == *"_NN" ]]; then
         foamToVTK -case "${D}"
         pvbatch Lib/paraView/getContoursUxUy.py
     fi

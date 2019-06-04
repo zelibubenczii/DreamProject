@@ -3,7 +3,6 @@ for D in *; do
 	if [ -d "${D}" ]; then
         if [[ "${D}" == *"_NN" ]]; then
             preD=${D/_NN/}
-            echo $preD
             cp -r $preD/. $D
             path=$(realpath $D)
             python3 Lib/caseArgSetter.py $path
