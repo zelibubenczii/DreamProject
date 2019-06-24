@@ -16,6 +16,6 @@ for D in *; do
 	fi
 done
 
-# writes data in the CSV file "data.csv" where each point represents a row = [ux/v_in, uy/v_in, cx, cy, v_in]
+# writes data in the CSV file "data.csv" where each point represents a row = [ux, uy, cx, cy, v_in]
 python3 Lib/postprocessor.py
 

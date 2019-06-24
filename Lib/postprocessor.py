@@ -54,15 +54,14 @@ if __name__ == "__main__":
     writer = csv.writer(file)
 
     for sf in subfolders:
-        Ux = read_data(sf + '/0/Ux')
-        Uy = read_data(sf + '/0/Uy')    
-        Cx = read_data(sf + '/0/Cx')
-        Cy = read_data(sf + '/0/Cy') 
+        Ux, _ = read_data(sf + '/0/Ux')
+        Uy, _ = read_data(sf + '/0/Uy')    
+        Cx, _ = read_data(sf + '/0/Cx')
+        Cy, _ = read_data(sf + '/0/Cy') 
         
         v_in = get_v_in(sf)
 
         for ux, uy, cx, cy in zip(Ux, Uy, Cx, Cy):
-            # row = [ux/v_in, uy/v_in, cx, cy, v_in]
             row = [ux, uy, cx, cy, v_in]
             writer.writerow(row)
 
