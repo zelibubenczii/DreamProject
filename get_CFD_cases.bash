@@ -3,7 +3,7 @@ mv cylinder orig
 mv orig/0.orig orig/0
 
 # python Lib/preprocessor.py u_inp_0 delta_u N
-python Lib/preprocessor.py 1 0.25 26
+python Lib/preprocessor.py 1 0.25 100
 
 for D in *; do
 	if [ -d "${D}" ]; then
