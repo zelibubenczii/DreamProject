@@ -4,7 +4,7 @@ from paraview.simple import *
 paraview.simple._DisableFirstRenderCameraReset()
 
 # create a new 'Legacy VTK Reader'
-v_in10_NN_0vtk = LegacyVTKReader(FileNames=['C:\\Program Files\\blueCFD-Core-2017\\ofuser-of5\\run\\check\\V_in=1.0_NN\\VTK\\V_in=1.0_NN_0.vtk'])
+v_in10_NN_0vtk = LegacyVTKReader(FileNames=['$DirPath$/VTK/V_in=22.5_NN_0.vtk'])
 
 # get active view
 renderView1 = GetActiveViewOrCreate('RenderView')
@@ -132,7 +132,7 @@ renderView1.CameraFocalPoint = [-0.0060213444053787216, 0.8649845884368418, -0.2
 renderView1.CameraParallelScale = 2.29128784747792
 
 # save screenshot
-SaveScreenshot('C:/Program Files/blueCFD-Core-2017/ofuser-of5/run/check/V_in=1.0_NN/Ux.jpg', renderView1, ImageResolution=[1002, 740])
+SaveScreenshot('$DirPath$/Ux.jpg', renderView1, ImageResolution=[1002, 740])
 
 # set active source
 SetActiveSource(slice1)
@@ -188,7 +188,7 @@ renderView1.CameraFocalPoint = [-0.0060213444053787216, 0.8649845884368418, -0.2
 renderView1.CameraParallelScale = 2.29128784747792
 
 # save screenshot
-SaveScreenshot('C:/Program Files/blueCFD-Core-2017/ofuser-of5/run/check/V_in=1.0_NN/Uy.jpg', renderView1, ImageResolution=[1002, 740])
+SaveScreenshot('$DirPath$/Uy.jpg', renderView1, ImageResolution=[1002, 740])
 
 #### saving camera placements for all active views
 
