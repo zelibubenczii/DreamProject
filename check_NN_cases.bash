@@ -5,6 +5,6 @@ Lib/VtkBuilder.bash
 for D in *; do
     if [ -d "${D}" ] && [[ "${D}" == *"_NN" ]]; then
         foamToVTK -case "${D}"
-        pvbatch Lib/paraView/getContoursUxUy.py
+        pvbatch $D/_paraview/UxUy_template.py
     fi
 done

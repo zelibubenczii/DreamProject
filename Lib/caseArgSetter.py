@@ -29,9 +29,10 @@ def change_parameters(argv):
             
 def change_template(argv):
     dir_path = argv[1]
+    dir_name = os.path.basename(dir_path)
     temp_path = dir_path + '/_paraview/UxUy_template.py'
     for line in fileinput.input(temp_path, inplace='True'):
-        line = line.replace('$DirPath$', dir_path)
+        line = line.replace('$DirPath$', dir_path).replace('$DirName$', dir_name)
         print(line)
 
 if __name__ == "__main__":

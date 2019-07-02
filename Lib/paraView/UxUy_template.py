@@ -4,7 +4,7 @@ from paraview.simple import *
 paraview.simple._DisableFirstRenderCameraReset()
 
 # create a new 'Legacy VTK Reader'
-v_in10_NN_0vtk = LegacyVTKReader(FileNames=['$DirPath$/VTK/V_in=22.5_NN_0.vtk'])
+v_vtk = LegacyVTKReader(FileNames=['$DirPath$/VTK/$DirName$_0.vtk'])
 
 # get active view
 renderView1 = GetActiveViewOrCreate('RenderView')
@@ -12,25 +12,25 @@ renderView1 = GetActiveViewOrCreate('RenderView')
 # renderView1.ViewSize = [1002, 740]
 
 # show data in view
-v_in10_NN_0vtkDisplay = Show(v_in10_NN_0vtk, renderView1)
+v_vtkDisplay = Show(v_vtk, renderView1)
 # trace defaults for the display properties.
-v_in10_NN_0vtkDisplay.Representation = 'Surface'
-v_in10_NN_0vtkDisplay.ColorArrayName = [None, '']
-v_in10_NN_0vtkDisplay.OSPRayScaleArray = 'C'
-v_in10_NN_0vtkDisplay.OSPRayScaleFunction = 'PiecewiseFunction'
-v_in10_NN_0vtkDisplay.SelectOrientationVectors = 'C'
-v_in10_NN_0vtkDisplay.ScaleFactor = 0.4
-v_in10_NN_0vtkDisplay.SelectScaleArray = 'C'
-v_in10_NN_0vtkDisplay.GlyphType = 'Arrow'
-v_in10_NN_0vtkDisplay.GlyphTableIndexArray = 'C'
-v_in10_NN_0vtkDisplay.DataAxesGrid = 'GridAxesRepresentation'
-v_in10_NN_0vtkDisplay.PolarAxes = 'PolarAxesRepresentation'
-v_in10_NN_0vtkDisplay.ScalarOpacityUnitDistance = 0.36371927394484016
-v_in10_NN_0vtkDisplay.GaussianRadius = 0.2
-v_in10_NN_0vtkDisplay.SetScaleArray = ['POINTS', 'Cx']
-v_in10_NN_0vtkDisplay.ScaleTransferFunction = 'PiecewiseFunction'
-v_in10_NN_0vtkDisplay.OpacityArray = ['POINTS', 'Cx']
-v_in10_NN_0vtkDisplay.OpacityTransferFunction = 'PiecewiseFunction'
+v_vtkDisplay.Representation = 'Surface'
+v_vtkDisplay.ColorArrayName = [None, '']
+v_vtkDisplay.OSPRayScaleArray = 'C'
+v_vtkDisplay.OSPRayScaleFunction = 'PiecewiseFunction'
+v_vtkDisplay.SelectOrientationVectors = 'C'
+v_vtkDisplay.ScaleFactor = 0.4
+v_vtkDisplay.SelectScaleArray = 'C'
+v_vtkDisplay.GlyphType = 'Arrow'
+v_vtkDisplay.GlyphTableIndexArray = 'C'
+v_vtkDisplay.DataAxesGrid = 'GridAxesRepresentation'
+v_vtkDisplay.PolarAxes = 'PolarAxesRepresentation'
+v_vtkDisplay.ScalarOpacityUnitDistance = 0.36371927394484016
+v_vtkDisplay.GaussianRadius = 0.2
+v_vtkDisplay.SetScaleArray = ['POINTS', 'Cx']
+v_vtkDisplay.ScaleTransferFunction = 'PiecewiseFunction'
+v_vtkDisplay.OpacityArray = ['POINTS', 'Cx']
+v_vtkDisplay.OpacityTransferFunction = 'PiecewiseFunction'
 
 # reset view to fit data
 renderView1.ResetCamera()
@@ -39,7 +39,7 @@ renderView1.ResetCamera()
 renderView1.Update()
 
 # create a new 'Slice'
-slice1 = Slice(Input=v_in10_NN_0vtk)
+slice1 = Slice(Input=v_vtk)
 slice1.SliceType = 'Plane'
 slice1.SliceOffsetValues = [0.0]
 
@@ -73,7 +73,7 @@ slice1Display.OpacityArray = ['POINTS', 'Cx']
 slice1Display.OpacityTransferFunction = 'PiecewiseFunction'
 
 # hide data in view
-Hide(v_in10_NN_0vtk, renderView1)
+Hide(v_vtk, renderView1)
 
 # update the view to ensure updated data information
 renderView1.Update()
@@ -118,13 +118,13 @@ uxLUTColorBar.Position = [0.3421556886227546, 0.0445945945945946]
 uxLUTColorBar.ScalarBarLength = 0.3299999999999996
 
 # set active source
-SetActiveSource(v_in10_NN_0vtk)
+SetActiveSource(v_vtk)
 
 # show data in view
-v_in10_NN_0vtkDisplay = Show(v_in10_NN_0vtk, renderView1)
+v_vtkDisplay = Show(v_vtk, renderView1)
 
 # hide data in view
-Hide(v_in10_NN_0vtk, renderView1)
+Hide(v_vtk, renderView1)
 
 # current camera placement for renderView1
 renderView1.CameraPosition = [-0.0060213444053787216, 0.8649845884368418, 5.794619354882062]
@@ -180,7 +180,7 @@ uyLUTColorBar.ScalarBarLength = 0.33000000000000024
 renderView1.Update()
 
 # set active source
-SetActiveSource(v_in10_NN_0vtk)
+SetActiveSource(v_vtk)
 
 # current camera placement for renderView1
 renderView1.CameraPosition = [-0.0060213444053787216, 0.8649845884368418, 5.794619354882062]
