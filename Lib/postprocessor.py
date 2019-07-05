@@ -48,8 +48,9 @@ def get_v_in(file_name):
     return eval(file_name[start:])
 
 if __name__ == "__main__":
-    dirs_to_discard = ['orig', '.git', 'Help', "Lib"]
-    subfolders = [f.path for f in os.scandir(dir) if (f.is_dir() and f.name not in dirs_to_discard and f.name.find('_NN') < 0) ]
+    # dirs_to_discard = ['orig', '.git', 'Help', "Lib"]
+    subfolders = [f.path for f in os.scandir(dir) if (f.is_dir() and f.name.find('V_in') == 0 and f.name.find('_NN') < 0) ]
+    
     file = open(dir + "/data.csv",'w')
     writer = csv.writer(file)
 
@@ -64,6 +65,6 @@ if __name__ == "__main__":
         for ux, uy, cx, cy in zip(Ux, Uy, Cx, Cy):
             row = [ux, uy, cx, cy, v_in]
             writer.writerow(row)
-
     file.close()
+
 
