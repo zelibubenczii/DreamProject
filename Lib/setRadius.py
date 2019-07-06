@@ -1,5 +1,18 @@
 import math, re, fileinput
 
+def set_radius(dir, R_new):
+    file_path = dir + '/system/blockMeshDict'
+    with open(file_path, 'r') as f:
+        file_lines = f.readlines()
+
+    points_to_scale = find_cylinder_points(file_lines)
+    file_lines = change_point_lines(file_lines, points_to_scale, R_new)
+    file_lines = change_arc_lines(file_lines, R_new)
+
+    with open(file_path, 'w') as file:
+        for line in file_lines:
+            file.write(line)     
+
 def change_point_lines(file_lines, points_to_scale, R_new):
     #to do in future: write a func to find n_points
     n_points = 19
@@ -65,15 +78,3 @@ def scale_side_points(file_lines, start):
         file_lines[i+start] = re.sub('(?<=\ )[\d.\-]+(?=\,)', y_new, file_lines[i+start])
         
 
-def set_radius(dir, R_new):
-    file_path = dir + '/system/blockMeshDict'
-    with open(file_path, 'r') as f:
-        file_lines = f.readlines()
-
-    points_to_scale = find_cylinder_points(file_lines)
-    file_lines = change_point_lines(file_lines, points_to_scale, R_new)
-    file_lines = change_arc_lines(file_lines, R_new)
-
-    with open(file_path, 'w') as file:
-        for line in file_lines:
-            file.write(line)

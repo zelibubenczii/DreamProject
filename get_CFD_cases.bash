@@ -1,8 +1,13 @@
 root_path=$PWD
 
+R0="0.5"
+dR="0.05"
+nR="3"
 V0="2"
-dV="0.25"
-N="100"
+dV="0.5"
+nV="3"
+
+python $root_path/Lib/preprocessor.py $R0 $dR $nR $V0 $dV $nV
 
 dirname="cylinder_V0=${V0}_dV=${dV}_N=${N}"
 mkdir $dirname
@@ -13,7 +18,7 @@ mv cylinder orig
 mv orig/0.orig orig/0
 
 # python Lib/preprocessor.py u_inp_0 delta_u N
-python $root_path/Lib/preprocessor.py $V0 $dV $N
+python $root_path/Lib/preprocessor.py $R0 $dR $nR $V0 $dV $nV
 
 for D in *; do
 	if [ -d "${D}" ]; then
