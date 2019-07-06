@@ -2,7 +2,7 @@ root_path=$PWD
 
 V0="2"
 dV="0.25"
-N="10"
+N="100"
 
 dirname="cylinder_V0=${V0}_dV=${dV}_N=${N}"
 mkdir $dirname
