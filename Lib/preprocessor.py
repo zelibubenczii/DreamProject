@@ -20,7 +20,7 @@ def create_cases(root, args):
         set_radius(dir_Ri_V0, R_i)
         set_velocity(dir_Ri_V0, V_0)
         
-        for j in range(i, nV):
+        for j in range(1, nV):
             V_j = V_0 + dV * j
             
             dir_Ri_Vj = "{}/R={}_V={}".format(root, round(R_i, 3), round(V_j, 3))

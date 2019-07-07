@@ -1,13 +1,13 @@
 root_path=$PWD
 
-R0="0.25"
+R0="0.5"
 dR="0.05"
-nR="2"
+nR="12"
 V0="1"
 dV="0.5"
-nV="2"
+nV="12"
 
-dirname="cylinder_${nR}x${nV}_R=(${R0}..${dR})_V=(${V0}..${dV})"
+dirname="cylinder_${nR}x${nV}_R=${R0}..${dR}_V=${V0}..${dV}"
 mkdir $dirname
 cd $dirname
 

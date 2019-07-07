@@ -43,14 +43,15 @@ def read_data(dir):
     
     return xx, start
 
-def get_v_in(file_name):
-    start = file_name.find('V_in=') + len('V_in=')
-    return eval(file_name[start:])
+def read_input(path):
+    name = os.path.basename(path)
+    R_s, V_in_s = name.split('_')
+    R, V_in = re.search('(?<=\=)[\d.]+', R_s)[0], re.search('(?<=\=)[\d.]+', V_in_s)[0]
+    return eval(R), eval(V_in)
 
 if __name__ == "__main__":
     # dirs_to_discard = ['orig', '.git', 'Help', "Lib"]
-    subfolders = [f.path for f in os.scandir(dir) if (f.is_dir() and f.name.find('V_in') == 0 and f.name.find('_NN') < 0) ]
-    
+    subfolders = [f.path for f in os.scandir(dir) if (f.is_dir() and f.name.find('R=') == 0 and f.name.find('_NN') < 0) ]
     file = open(dir + "/data.csv",'w')
     writer = csv.writer(file)
 
@@ -60,10 +61,10 @@ if __name__ == "__main__":
         Cx, _ = read_data(sf + '/0/Cx')
         Cy, _ = read_data(sf + '/0/Cy') 
         
-        v_in = get_v_in(sf)
+        R, Vin = read_input(sf)
 
         for ux, uy, cx, cy in zip(Ux, Uy, Cx, Cy):
-            row = [ux, uy, cx, cy, v_in]
+            row = [ux/Vin, uy/Vin, cx, cy, R, Vin]
             writer.writerow(row)
     file.close()
 
