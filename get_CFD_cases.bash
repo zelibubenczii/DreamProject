@@ -1,15 +1,13 @@
 root_path=$PWD
 
-R0="0.5"
+R0="0.25"
 dR="0.05"
-nR="3"
-V0="2"
+nR="2"
+V0="1"
 dV="0.5"
-nV="3"
+nV="2"
 
-python $root_path/Lib/preprocessor.py $R0 $dR $nR $V0 $dV $nV
-
-dirname="cylinder_V0=${V0}_dV=${dV}_N=${N}"
+dirname="cylinder_${nR}x${nV}_R=(${R0}..${dR})_V=(${V0}..${dV})"
 mkdir $dirname
 cd $dirname
 
@@ -17,12 +15,11 @@ cp -r $FOAM_TUTORIALS/basic/potentialFoam/cylinder/ .
 mv cylinder orig
 mv orig/0.orig orig/0
 
-# python Lib/preprocessor.py u_inp_0 delta_u N
-python $root_path/Lib/preprocessor.py $R0 $dR $nR $V0 $dV $nV
+python3 $root_path/Lib/preprocessor.py $R0 $dR $nR $V0 $dV $nV
 
 for D in *; do
 	if [ -d "${D}" ]; then
-        if [[ "${D}" == *"V_in"* && "${D}" != *"_NN" ]]; then
+        if [[ "${D}" == *"R="* && "${D}" != *"_NN" ]]; then
 			blockMesh -case "${D}"
 			potentialFoam -case $PWD/"${D}"
 			postProcess -case $PWD/"${D}" -func 'components(U)' 
