@@ -25,23 +25,25 @@ def read_data(dir):
     returns it as a list of strings
     
     """
-    f = open(dir)
-    content = f.readlines()
-
-    for idx, line in enumerate(content):
-        if re.match('\d+', line):
-            length = eval(line)
-        if re.match('\(', line):
-            start = idx + 1
-            break
-            
-    end = start + length
+    with open(dir, 'r') as f:
+        content = f.readlines()
+        
+        for idx, line in enumerate(content):
+            if re.match('\d+', line):
+                length = eval(line)
+            if re.match('\(', line):
+                start = idx + 1
+                break
+                
+        end = start + length
+        
+        xx = []
+        for line in content[start:end]:
+            xx.append(read_node(line, 0))
     
-    xx = []
-    for line in content[start:end]:
-        xx.append(read_node(line, 0))
     
     return xx, start
+    
 
 def read_input(path):
     name = os.path.basename(path)
